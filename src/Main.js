@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Explore from './Explore';
 import Map from './Map';
+import Error from './Error';
 
 class Main extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Main extends React.Component {
     this.state = {
       search: '',
       location: {},
+      error: '',
     };
   }
 
@@ -19,9 +21,9 @@ class Main extends React.Component {
       const response = await axios.get(url);
       console.log('Response Display Name: ', response.data[0]);
       this.setState({ location: response.data[0] });
-    } catch (e) {
-      if (e.response) {
-        alert('error');
+    } catch (error) {
+      if (error.response) {
+        this.setState({error: `Error: ${error.response.data.error} - Status: ${error.response.status}`});
       }
     }
   };
@@ -46,6 +48,7 @@ class Main extends React.Component {
           searchLocation={this.searchLocation}
         />
         <Map lat={this.state.location.lat} lon={this.state.location.lon} />
+        <Error error={this.state.error} />
       </>
     );
   }
