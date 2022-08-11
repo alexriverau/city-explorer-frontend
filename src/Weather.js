@@ -9,14 +9,30 @@ class Weather extends React.Component {
     super(props);
     this.state = {
       weather: [],
+      error: ''
     };
   }
 
+  // getWeather = async () => {
+  //   const url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.props.search}`;
+  //   const response = await axios.get(url);
+  //   console.log(response);
+  //   this.setState({ weather: response.data });
+  // };
+
   getWeather = async () => {
-    const url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.props.search}`;
-    const response = await axios.get(url);
-    console.log(response);
-    this.setState({ weather: response.data });
+    try {
+      const url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.props.search}`;
+      const response = await axios.get(url);
+      console.log(response);
+      this.setState({ weather: response.data });
+    } catch (error) {
+      if (error.response) {
+        this.setState({
+          error: `Error: ${error.response.data.error} - Status: ${error.response.status}`,
+        });
+      }
+    }
   };
 
   render() {
