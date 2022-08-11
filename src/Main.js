@@ -52,7 +52,7 @@ class Main extends React.Component {
           searchLocation={this.searchLocation}
         />
         <Map lat={this.state.location.lat} lon={this.state.location.lon} />
-        <Weather weather={this.state.weather} />
+        <Weather weather={this.state.weather} search={this.state.search} />
         <Error error={this.state.error} />
       </>
     );
