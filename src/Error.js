@@ -1,11 +1,15 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
 
 class Error extends React.Component {
   render() {
     return (
-      <>
-      <h4>{this.props.error}</h4>
-      </> 
+      <Container style={{ width: '25rem' }}>
+        <Card className='m-4'>
+          <Card.Text id='error'> {this.props.error} </Card.Text>
+        </Card>
+      </Container>
     );
   }
 }
