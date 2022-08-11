@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Explore from './Explore';
 import Map from './Map';
+import Weather from './Weather';
 import Error from './Error';
 
 class Main extends React.Component {
@@ -10,6 +11,7 @@ class Main extends React.Component {
     this.state = {
       search: '',
       location: {},
+      weather: [],
       error: '',
     };
   }
@@ -23,7 +25,9 @@ class Main extends React.Component {
       this.setState({ location: response.data[0] });
     } catch (error) {
       if (error.response) {
-        this.setState({error: `Error: ${error.response.data.error} - Status: ${error.response.status}`});
+        this.setState({
+          error: `Error: ${error.response.data.error} - Status: ${error.response.status}`,
+        });
       }
     }
   };
@@ -48,6 +52,7 @@ class Main extends React.Component {
           searchLocation={this.searchLocation}
         />
         <Map lat={this.state.location.lat} lon={this.state.location.lon} />
+        <Weather weather={this.state.weather} />
         <Error error={this.state.error} />
       </>
     );
