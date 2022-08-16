@@ -3,6 +3,7 @@ import axios from 'axios';
 import Explore from './Explore';
 import Map from './Map';
 import Weather from './Weather';
+import Movies from './Movies';
 import Error from './Error';
 
 class Main extends React.Component {
@@ -12,6 +13,7 @@ class Main extends React.Component {
       search: '',
       location: {},
       weather: [],
+      movies: [],
       error: '',
     };
   }
@@ -23,6 +25,23 @@ class Main extends React.Component {
       const response = await axios.get(url);
       console.log('Response Display Name: ', response.data[0]);
       this.setState({ location: response.data[0] });
+      this.getMovies();
+    } catch (error) {
+      if (error.response) {
+        this.setState({
+          error: `Error: ${error.response.data.error} - Status: ${error.response.status}`,
+        });
+      }
+    }
+  };
+
+  getMovies = async () => {
+    try {
+      const url = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.search}`;
+      console.log('URL: ', url);
+      const response = await axios.get(url);
+      console.log('Response Display Name: ', response.data);
+      this.setState({ movies: response.data });
     } catch (error) {
       if (error.response) {
         this.setState({
@@ -53,6 +72,7 @@ class Main extends React.Component {
         />
         <Map lat={this.state.location.lat} lon={this.state.location.lon} />
         <Weather weather={this.state.weather} search={this.state.search} />
+        <Movies movies={this.state.movies} />
         <Error error={this.state.error} />
       </>
     );
