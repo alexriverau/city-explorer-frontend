@@ -39,16 +39,24 @@ class Weather extends React.Component {
           <Card className='m-4'>
             {this.state.weather.length > 0 &&
               this.state.weather.map((city, idx) => (
-                <Card.Body key={idx}>
-                  <Card.Title>Weather</Card.Title>
-                  <Card.Text>Date: {city.date}</Card.Text>
-                  <Card.Text>Forecast: {city.description}</Card.Text>
-                </Card.Body>
+                <WeatherDay key={idx} city={city} />
               ))}
           </Card>
         </Container>
         <Error error={this.state.error} />
       </Container>
+    );
+  }
+}
+
+class WeatherDay extends React.Component {
+  render() {
+    return (
+      <Card.Body key={this.props.idx}>
+        <Card.Title>Weather</Card.Title>
+        <Card.Text>Date: {this.props.city.date}</Card.Text>
+        <Card.Text>Forecast: {this.props.city.description}</Card.Text>
+      </Card.Body>
     );
   }
 }

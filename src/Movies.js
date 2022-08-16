@@ -9,28 +9,38 @@ class Movies extends React.Component {
       <Container style={{ width: '30rem' }}>
         <Accordion defaultActiveKey='0'>
           {this.props.movies.map((movie, idx) => (
-            <Accordion.Item eventKey={idx}>
-              <Accordion.Header>{movie.title}</Accordion.Header>
-              <Accordion.Body>
-                <Card>
-                  <Card.Body>
-                    <Card.Img
-                      id='movieImg'
-                      style={{ width: '18rem' }}
-                      src={movie.image_url}
-                      alt={movie.overview}
-                    />
-                    <Card.Text id='movie'>{movie.overview}</Card.Text>
-                    <Card.Text>Release Date: {movie.released_on}</Card.Text>
-                    <Card.Text>Rating: {movie.average_votes}</Card.Text>
-                    <Card.Text>Total Votes: {movie.total_votes}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Accordion.Body>
-            </Accordion.Item>
+            <Movie idx={idx} movie={movie} />
           ))}
         </Accordion>
       </Container>
+    );
+  }
+}
+
+class Movie extends React.Component {
+  render() {
+    return (
+      <Accordion.Item eventKey={this.props.idx}>
+        <Accordion.Header>{this.props.movie.title}</Accordion.Header>
+        <Accordion.Body>
+          <Card>
+            <Card.Body>
+              <Card.Img
+                id='movieImg'
+                style={{ width: '18rem' }}
+                src={this.props.movie.image_url}
+                alt={this.props.movie.overview}
+              />
+              <Card.Text id='movie'>{this.props.movie.overview}</Card.Text>
+              <Card.Text>
+                Release Date: {this.props.movie.released_on}
+              </Card.Text>
+              <Card.Text>Rating: {this.props.movie.average_votes}</Card.Text>
+              <Card.Text>Total Votes: {this.props.movie.total_votes}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Accordion.Body>
+      </Accordion.Item>
     );
   }
 }
