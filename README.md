@@ -1,13 +1,13 @@
 # City Explorer (Frontend)
 
 **Author**: Alex Rivera
-**Version**: 1.0.3
+**Version**: 1.0.5
 <!-- (increment the patch/fix version number if you make more commits past your first submission) -->
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
-App that requests data from locationIQ API using Axios based on user input. Renders data back to the user.
+App that requests data from Weather API and Movies API using Axios based on user input. Renders data back to the user.
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ App that requests data from locationIQ API using Axios based on user input. Rend
 * LocationIQ
 * Axios
 
-![Web Request Response Cycle](img/city_explorer.jpg)
+![Web Request Response Cycle](img/city_explorer_wrrc.jpg)
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
@@ -34,16 +34,4 @@ App that requests data from locationIQ API using Axios based on user input. Rend
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
-* Daniel Brott
-
 ---
-
-Name of feature: Lab06
-
-Estimate of time needed to complete: 2.5hr
-
-Start time: 9:00pm CST
-
-Finish time: 1:00am CST
-
-Actual time needed to complete: 4hr
