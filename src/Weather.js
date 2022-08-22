@@ -14,9 +14,9 @@ class Weather extends React.Component {
     };
   }
 
-  getWeather = async () => {
+  getWeather = async (lat, lon) => {
     try {
-      const url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.props.search}`;
+      const url = `${process.env.REACT_APP_SERVER}/weather?lat=${this.props.lat}&lon=${this.props.lon}`;
       const response = await axios.get(url);
       console.log(response);
       this.setState({ weather: response.data });
