@@ -72,9 +72,13 @@ class Main extends React.Component {
           searchLocation={this.searchLocation}
         />
         <Map lat={this.state.location.lat} lon={this.state.location.lon} />
-
-        {this.state.hasLocation && <Weather weather={this.state.weather} lat={this.state.location.lat} lon={this.state.location.lon} />}
-        
+        {this.state.hasLocation && (
+          <Weather
+            weather={this.state.weather}
+            lat={this.state.location.lat}
+            lon={this.state.location.lon}
+          />
+        )}
         <Movies movies={this.state.movies} />
         <Error error={this.state.error} />
       </>

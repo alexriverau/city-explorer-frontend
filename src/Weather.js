@@ -39,11 +39,10 @@ class Weather extends React.Component {
           <Card className='m-4'>
             {this.state.weather.length > 0 &&
               this.state.weather.map((day, idx) => (
-                <WeatherDay 
-                key={idx} 
-                // city={city}
-                date={day.day}
-                description={day.description} 
+                <WeatherDay
+                  key={idx}
+                  date={day.day}
+                  description={day.description}
                 />
               ))}
           </Card>
