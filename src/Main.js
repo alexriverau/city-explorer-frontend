@@ -15,6 +15,7 @@ class Main extends React.Component {
       weather: [],
       movies: [],
       error: '',
+      hasLocation: false,
     };
   }
 
@@ -24,7 +25,7 @@ class Main extends React.Component {
       console.log('URL: ', url);
       const response = await axios.get(url);
       console.log('Response Display Name: ', response.data[0]);
-      this.setState({ location: response.data[0] });
+      this.setState({ location: response.data[0], hasLocation: true });
       this.getMovies();
     } catch (error) {
       if (error.response) {
@@ -71,7 +72,9 @@ class Main extends React.Component {
           searchLocation={this.searchLocation}
         />
         <Map lat={this.state.location.lat} lon={this.state.location.lon} />
-        <Weather weather={this.state.weather} search={this.state.search} />
+
+        {this.state.hasLocation && <Weather weather={this.state.weather} lat={this.state.location.lat} lon={this.state.location.lon} />}
+        
         <Movies movies={this.state.movies} />
         <Error error={this.state.error} />
       </>
